@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NewsCategory>
+
+<h2>News Category Preferences</h2>
+<p>
+   <a asp-controller="NewsCategory" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+   <thead>
+      <tr>
+         <th>
+            @Html.DisplayNameFor(model => model.Name)
+         </th>
+         <th>
+            Number of Sources
+         </th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      @foreach (var item in Model)
+      {
+      <tr>
+         <td>
+            @Html.DisplayFor(modelItem => item.Name)
+         </td>
+         <td>
+            @item.NewsSources.Count
+         </td>
+         <td>
+            @if (Model.Count() > 1)
+            {
+               <a asp-action="Delete" asp-controller="NewsCategory" asp-route-id="@item.Id"
+                  class="btn btn-sm btn-danger">Remove</a>
+            }
+            <a asp-action="Index" asp-controller="NewsSource" asp-route-id="@item.Id"
+               class="btn btn-sm btn-warning">Manage Sources</a>
+         </td>
+      </tr>
+      }
+   </tbody>
+</table>

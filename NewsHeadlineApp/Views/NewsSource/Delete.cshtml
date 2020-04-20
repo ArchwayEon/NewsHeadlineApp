@@ -1,0 +1,15 @@
+﻿@model RemoveSourceVM
+
+<h1>Remove News Source</h1>
+
+<h3>Are you sure you want to remove '@Model.NewsSource.Name' from '@Model.NewsCategory.Name'?</h3>
+<div>
+   <form asp-action="Delete">
+      <input type="hidden" name="newsCategoryId" value="@Model.NewsCategory.Id" />
+      <input type="hidden" name="newsSourceId" value="@Model.NewsSource.Id" />
+      <input type="submit" value="Remove" class="btn btn-danger" /> |
+      <a asp-controller="NewsSource" asp-action="Index" asp-route-id="@Model.NewsCategory.Id">
+         Back to News Source List
+      </a>
+   </form>
+</div>

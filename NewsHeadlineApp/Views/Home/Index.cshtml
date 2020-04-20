@@ -1,0 +1,32 @@
+﻿@model HomeIndexVM
+
+
+<h1>News Category: @Model.NewsCategoryName</h1>
+<h2>News Source: @Model.NewsSourceName</h2>
+
+<p>
+   <a asp-action="Index" asp-route-id="@Model.NCNextIndex" asp-route-otherId="0"
+      class="btn btn-warning">Next News Category</a>
+   <a asp-action="Index" asp-route-id="@Model.NCIndex" asp-route-otherId="@Model.NSNextIndex"
+      class="btn btn-warning">Next News Source</a>
+</p>
+
+@foreach (var article in Model.Articles)
+{
+   <h3>@article.Title</h3>
+   <p>Author: @article.AuthorName</p>
+   <p>@article.Description</p>
+   <a href="@article.Url" target="_blank">Read the article</a>
+   <br />
+   <img src="@article.UrlToImage" style="width:50%;height:auto;">
+   <p>@article.PublishedAt.ToString()</p>
+}
+
+<p>
+   <a asp-action="Index" asp-route-id="@Model.NCNextIndex" asp-route-otherId="0"
+      class="btn btn-warning">Next News Category</a>
+   <a asp-action="Index" asp-route-id="@Model.NCIndex" asp-route-otherId="@Model.NSNextIndex"
+      class="btn btn-warning">Next News Source</a>
+</p>
+
+

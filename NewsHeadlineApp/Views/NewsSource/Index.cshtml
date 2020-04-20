@@ -1,0 +1,36 @@
+﻿@model NewsCategory
+
+@{
+   ViewData["Title"] = $"News sources for news category: {Model.Name}";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+   <a asp-action="Create" asp-route-id="@Model.Id" class="btn btn-primary">Add New Source</a>
+</p>
+<table class="table">
+   <thead>
+      <tr>
+         <th>
+            Source Name
+         </th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      @foreach (var source in Model.NewsSources)
+      {
+         <tr>
+            <td>
+               @Html.DisplayFor(modelItem => source.Name)
+            </td>
+            <td>
+               <a asp-action="Delete" asp-route-id="@source.Id" asp-route-otherId="@Model.Id"
+                  class="btn btn-sm btn-danger">Remove</a>
+            </td>
+         </tr>
+      }
+   </tbody>
+</table>
+<a asp-controller="Profile" asp-action="Manage" class="btn btn-warning">Back to Manage Profile</a>

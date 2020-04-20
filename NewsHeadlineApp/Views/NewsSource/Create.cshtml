@@ -1,0 +1,35 @@
+﻿@model CreateNewsSourceVM
+
+@{
+   ViewData["Title"] = $"Select a new news source for: {Model.NewsCategory.Name}";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+   <div class="col-md-4">
+      <form asp-action="Create">
+         <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input type="hidden" name="newsCategoryId" value="@Model.NewsCategory.Id" />
+            <select asp-for="Name" class="form-control">
+               <option value="Choose">Choose One:</option>
+               @foreach (var name in Model.SourceNameChoices)
+               {
+                  <option value="@name">@name</option>
+               }
+            </select>
+         </div>
+         <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+         </div>
+      </form>
+   </div>
+</div>
+
+<div>
+   <a asp-controller="NewsSource" asp-action="Index" asp-route-id="@Model.NewsCategory.Id">
+      Back to News Source list for: @Model.NewsCategory.Name
+   </a>
+</div>
+
